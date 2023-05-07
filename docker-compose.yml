@@ -5,8 +5,6 @@ services:
     build: .
     environment:
       APP_ENV: dev
-    ports:
-      - 80:80
     volumes:
       - ./:/var/www/shop
       - composer_data:/var/data/composer

@@ -46,7 +46,7 @@ build: ## Build docker
 	${DOCKER_COMPOSE} build
 
 setup: ## Setup (init)
-	cp auth.json.dist auth.json
+# 	cp auth.json.dist auth.json
 	cp .env.dist .env
 	cp .php-cs-fixer.dist.php .php-cs-fixer.php
 	cp docker-compose.override.yml.dist docker-compose.override.yml
