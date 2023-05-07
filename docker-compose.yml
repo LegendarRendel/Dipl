@@ -17,16 +17,12 @@ services:
       POSTGRES_USER: shop
       POSTGRES_PASSWORD: shop_password
     restart: "no"
-    ports:
-      - 5432:5432
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data:/var/lib/postgresql/data:rw
     command: -p 5432
     logging:
       driver: local
 
 volumes:
   composer_data:
-    driver: local
   pg_data:
-    driver: local
