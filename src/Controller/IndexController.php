@@ -21,14 +21,12 @@ class IndexController extends AbstractController
 
     /**
      * IndexController constructor.
-     * @param SessionInterface $session
      */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
         $this->session->start();
     }
-
 
     /**
      * @Route("/", name="index")
@@ -45,8 +43,6 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/shop/list", name="shopList")
-     * @param ShopItemsRepository $itemsRepository
-     * @return Response
      */
     public function shopList(ShopItemsRepository $itemsRepository): Response
     {
@@ -63,10 +59,6 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/shop/cart/add/{id<\d+>}", name="shopCartAdd")
-     *
-     * @param ShopItems $shopItems
-     * @param EntityManagerInterface $em
-     * @return Response
      */
     public function shopCartAdd(ShopItems $shopItems, EntityManagerInterface $em): Response
     {
@@ -85,9 +77,6 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/shop/item/{id<\d+>}", name="shopItem")
-     *
-     * @param ShopItems $shopItems
-     * @return Response
      */
     public function shopItem(ShopItems $shopItems): Response
     {
@@ -104,9 +93,6 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/shop/cart", name="shopCart")
-     *
-     * @param ShopCartRepository $cartRepository
-     * @return Response
      */
     public function shopCart(ShopCartRepository $cartRepository): Response
     {
@@ -124,13 +110,9 @@ class IndexController extends AbstractController
 
     /**
      * @Route("/shop/order", name="shopOrder")
-     *
-     * @param Request $request
-     * @return Response
      */
     public function shopOrder(Request $request, EntityManagerInterface $em): Response
     {
-
         // just setup a fresh $task object (remove the example data)
         $shopOrder = new ShopOrder();
 
@@ -152,7 +134,6 @@ class IndexController extends AbstractController
 
             return $this->redirectToRoute('index');
         }
-
 
         return $this->render(
             'index/shopOrder.html.twig',
