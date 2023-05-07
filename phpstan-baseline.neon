@@ -1,0 +1,121 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Property App\\\\Entity\\\\ShopCart\\:\\:\\$count has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopCart.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopCart\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopCart.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopCart\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ShopCart.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopCart\\:\\:\\$sessionId has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopCart.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopCart\\:\\:\\$shopItem has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopCart.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\ShopItems\\:\\:getShopCarts\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$description has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$price has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$shopCarts has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopItems\\:\\:\\$title has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopItems.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$sessionId has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$status has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$userEmail has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$userName has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\ShopOrder\\:\\:\\$userPhone has no type specified\\.$#"
+			count: 1
+			path: src/Entity/ShopOrder.php
+
+		-
+			message: "#^Method App\\\\Form\\\\OrderFormType\\:\\:buildForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/OrderFormType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\OrderFormType\\:\\:configureOptions\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Form/OrderFormType.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\ShopCartRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/ShopCartRepository.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\ShopItemsRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/ShopItemsRepository.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\ShopOrderRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/ShopOrderRepository.php
