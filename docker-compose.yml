@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  shop:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/shop
+      - composer_data:/var/data/composer
+
+  postgres:
+    image: postgres:15.2-alpine3.17
+    environment:
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop_password
+    restart: "no"
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    command: -p 5432
+    logging:
+      driver: local
+
+volumes:
+  composer_data:
+    driver: local
+  pg_data:
+    driver: local
