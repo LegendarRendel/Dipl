@@ -1,0 +1,27 @@
+server {
+    listen 80;
+    root /var/www/shop/public;
+    index index.php;
+    include mime.types;
+    sendfile off;
+
+    error_log /dev/stdout;
+    access_log /dev/stdout;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.(css|jpg|js|png)$ {
+        root /var/data;
+        try_files $uri $uri /$uri =404;
+        expires 1s;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass localhost:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
