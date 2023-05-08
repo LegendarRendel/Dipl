@@ -2,9 +2,9 @@ FROM php:7.4-fpm-alpine
 
 RUN apk update \
     && apk upgrade \
-    && apk add nginx libzip-dev postgresql-libs libpq-dev
+    && apk add nginx libzip-dev postgresql-libs libpq-dev icu-dev shadow
 
-RUN docker-php-ext-install zip pgsql opcache pdo_pgsql
+RUN docker-php-ext-install zip pgsql opcache pdo_pgsql intl
 
 # install composer according https://getcomposer.org/download/
 COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
@@ -14,6 +14,8 @@ WORKDIR /var/www/shop
 COPY ./composer.json ./composer.lock ./
 
 RUN composer install --prefer-dist --no-progress --no-interaction --no-scripts
+
+RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
 COPY --chown=www-data:www-data . /var/www/shop/
 
