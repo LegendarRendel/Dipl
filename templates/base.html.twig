@@ -17,17 +17,25 @@
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Fixed navbar</a>
+                    <a class="navbar-brand" href="{{ path('index') }}">REND-Tech</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item {{ app.request.get('_route') == 'index' ? 'active' }}">
-                                <a class="nav-link" href="{{ path('index') }}">Home</a>
+                                <a class="nav-link" href="{{ path('index') }}">Главная</a>
                             </li>
+
                             <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
                                 <a class="nav-link" href="{{ path('shopList') }}">Магазин</a>
+                            </li>
+                            <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
+                                <a class="nav-link" href="{{ path('shopList') }}">Поддержка</a>
+                            </li>
+
+                            <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
+                                <a class="nav-link" href="{{ path('shopList') }}">Информация для покупателя</a>
                             </li>
 
                         </ul>
