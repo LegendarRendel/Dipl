@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}REND-Tech{% endblock %}
 
 {% block body %}
 <style>
@@ -13,6 +13,11 @@
         text-decoration: none;
         color: #222222;
     }
+    .btn-delete
+    {
+        float: right;
+
+    }
 </style>
 <div class="example-wrapper">
     <h1>{{ title }}</h1>
@@ -24,8 +29,8 @@
             <div class="card mb-12 shadow-sm">
                 <div class="card-body">
                     <h4>{{ item.shopItem.title }}</h4>
-                    <p class="card-text">{{ item.shopItem.description }}</p>
-                    <h5>{{ item.shopItem.price }} руб</h5>
+                    <p class="card-text">{{ item.shopItem.description[:119] }}...</p>
+                    <h5>{{ item.shopItem.price }} руб <div class="btn-delete"><a href="#" class="btn btn-success mt-2" style="width: 200px;">Удалить товар</a></h5></div>
                     {% set sum = sum + item.shopItem.price %}
                 </div>
             </div>

@@ -87,6 +87,7 @@ class IndexController extends AbstractController
                 'description' => $shopItems->getDescription(),
                 'price' => $shopItems->getPrice(),
                 'id' => $shopItems->getId(),
+                'image' => $shopItems->getImage(),
             ]
         );
     }
@@ -143,4 +144,25 @@ class IndexController extends AbstractController
             ]
         );
     }
+    /**
+     * @Route("/search", name="search")
+     */
+    public function Research(Request $request, ShopItemsRepository $itemsRepository): Response
+    {
+        $search = $request->query->get('search');
+        $qb = $itemsRepository->createQueryBuilder('items');
+        $qb->where('items.title like :search')
+            ->setParameters([':search' => '%'.$search.'%']);
+        $items = $qb->getQuery()->getResult();
+        return $this->render(
+            'index/shopList.html.twig',
+            [
+                'title' => 'SHOP LIST',
+                'items' => $items,
+            ]
+        );
+    }
+
+
+
 }

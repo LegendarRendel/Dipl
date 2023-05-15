@@ -4,12 +4,30 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {#include bootstrap#}
+        <link rel="icon" href="/Img/Logo.ico">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         {#end include bootstrap#}
-        {% block stylesheets %}
 
+        {% block stylesheets %}
+            <style>
+            footer {
+            padding: 10px 20px;
+            background: #2e2323;
+            color: white;
+            width: 100%;
+            position :fixed;
+            bottom : 0;
+            }
+            .Logo1 {
+                color: #ad3265;
+
+            }
+            .Logo2 {
+                color: #44ade7;
+            }
+            </style>
         {% endblock %}
     </head>
     <body>
@@ -17,7 +35,7 @@
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ path('index') }}">REND-Tech</a>
+                    <a class="navbar-brand" href="{{ path('index') }}"><span class="Logo1">REND</span>-<span class="Logo2">Tech</span></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -30,14 +48,19 @@
                             <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
                                 <a class="nav-link" href="{{ path('shopList') }}">Магазин</a>
                             </li>
-                            <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
+                            <li class="nav-item {{ app.request.get('_route') == 'Support' ? 'active' }}">
                                 <a class="nav-link" href="{{ path('shopList') }}">Поддержка</a>
                             </li>
 
                             <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
                                 <a class="nav-link" href="{{ path('shopList') }}">Информация для покупателя</a>
                             </li>
-
+                            <li class="nav-item {{ app.request.get('_route') == 'shopList' ? 'active' }}">
+                                 <form action="/search" method="GET">
+                                    <input type="text" placeholder="Искать здесь..." name="search">
+                                    <input type="submit" value="Поиск">
+                                </form>
+                            </li>
                         </ul>
                         <div class="mt-2 mt-md-0">
                             <a href="{{ path('shopCart') }}" class="btn btn-outline-success my-2 my-sm-0 {{ app.request.get('_route') == 'shopCart' ? 'active' }}">Корзина</a>
@@ -57,4 +80,11 @@
             </main>
         </div>
     </body>
+
+    <footer>
+            <center><p><img src="/Img/Logo.ico"></p>
+                <p>© 2023-2023 REND-Tech</p>
+            <p>  Все упомянутые товарные знаки, названия игр и компаний, логотипы, материалы являются
+                собственностью соответствующих владельцев.</p></center>
+    </footer>
 </html>
