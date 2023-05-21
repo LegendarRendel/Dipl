@@ -3,6 +3,26 @@
 {% block title %}REND-Tech{% endblock %}
 
 {% block body %}
+    <style>
+    .mb-description{
+      font-weight: 600;
+        font-size: x-large;
+    }
+
+    .needs {
+        display: inline-flex;
+        width: auto;
+        height: 200px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .block {
+        margin-right: 30px;
+        width: 500px;
+        height: auto;
+    }
+    </style>
+
 
 <div class="example-wrapper">
     <h1>{{ title }}</h1>
@@ -10,20 +30,48 @@
 
         <div class="row">
             <div class="col-auto d-none d-lg-block">
-               <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-                    <title>{{ title }}</title>
-                   <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">image</text>
-                   <img src="{{ image }}" alt="" class="bd-placeholder-img" width="200" height="250" >
-                </svg>
+                <title>{{ title }}</title>
+                <img src="{{ image }}" alt="" class="bd-placeholder-img" width="250" height="400" title="{{ title }}"/>
             </div>
 
             <div class="col p-4 d-flex flex-column position-static">
+                <p class="mb-description" align="justify">Описание</p>
                 <p class="mb-auto" align="justify">{{ description }}</p>
                 <h3 class="mb-1">{{ price }} руб</h3>
-
+                {% if Count>0 %}
                 <a href="{{ path('shopCartAdd', {'id': id}) }}" class="btn btn-success mt-2" style="width: 200px;">Добавить в корзину</a>
+                {% else %}
+                <button type="button" class="btn btn-lg btn-primary" disabled style="width: 200px;">Товар закончился</button>
+                {% endif %}
             </div>
         </div>
+
+    </div>
+    <hr>
+    <h3 class="mb-1">Активация </h3>
+    <p>Регион: {{ Region }} </p>
+    <p>Сервис активации: {{ Activ }}</p>
+    <hr>
+    <h3 class="mb-1">Системные требования </h3>
+    <div class="needs">
+        <div class="block">
+        <p>Минимальные требования:
+        <p> ОС: {{ OSMin }}
+        <p> Процессор: {{ ProcessorMin }}
+        <p> Оперативная память: {{ MemoryMin }}
+        <p> Видеокарта: {{ GraphicsMin }}
+        <p> DirectX®: {{ DirectXMin }}
+        <p> Жесткий диск: {{ HardDriveMin }}
+        </div>
+        <div class="block">
+        <p>Рекомендованные требования:
+        <p> ОС: {{ OSMax }}
+        <p> Процессор: {{ ProcessorMax }}
+        <p> Оперативная память: {{ MemoryMax }}
+        <p> Видеокарта: {{ GraphicsMax }}
+        <p> DirectX®: {{ DirectXMax }}
+        <p> Жесткий диск: {{ HardDriveMax }}
+        </div>
+        <hr>
     </div>
 {% endblock %}

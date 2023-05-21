@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <h4>{{ item.shopItem.title }}</h4>
                     <p class="card-text">{{ item.shopItem.description[:119] }}...</p>
-                    <h5>{{ item.shopItem.price }} руб <div class="btn-delete"><a href="#" class="btn btn-success mt-2" style="width: 200px;">Удалить товар</a></h5></div>
+                    <h5>{{ item.shopItem.price }} руб <div class="btn-delete"><a href="{{ path('delete', {'id': item.id}) }}" class="btn btn-success mt-2" style="width: 200px;">Удалить товар</a></div></h5>
                     {% set sum = sum + item.shopItem.price %}
                 </div>
             </div>

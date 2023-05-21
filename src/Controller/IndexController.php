@@ -62,15 +62,20 @@ class IndexController extends AbstractController
      */
     public function shopCartAdd(ShopItems $shopItems, EntityManagerInterface $em): Response
     {
-        $sessionId = $this->session->getId();
+        if ($shopItems->getCount() > 0) {
+            $count = $shopItems->getCount();
+            --$count;
+            $shopItems->setCount($count);
+            $sessionId = $this->session->getId();
 
-        $shopCart = (new ShopCart())
-            ->setShopItem($shopItems)
-            ->setCount(1)
-            ->setSessionId($sessionId);
+            $shopCart = (new ShopCart())
+                ->setShopItem($shopItems)
+                ->setCount(1)
+                ->setSessionId($sessionId);
 
-        $em->persist($shopCart);
-        $em->flush();
+            $em->persist($shopCart);
+            $em->flush();
+        }
 
         return $this->redirectToRoute('shopItem', ['id' => $shopItems->getId()]);
     }
@@ -88,6 +93,23 @@ class IndexController extends AbstractController
                 'price' => $shopItems->getPrice(),
                 'id' => $shopItems->getId(),
                 'image' => $shopItems->getImage(),
+                'Count' => $shopItems->getCount(),
+                'Region' => $shopItems->getRegion(),
+                'Activ' => $shopItems->getActiv(),
+
+                'OSMin' => $shopItems->getOSMin(),
+                'ProcessorMin' => $shopItems->getProcessorMin(),
+                'MemoryMin' => $shopItems->getMemoryMin(),
+                'GraphicsMin' => $shopItems->getGraphicsMin(),
+                'DirectXMin' => $shopItems->getDirectXMin(),
+                'HardDriveMin' => $shopItems->getHardDriveMin(),
+
+                'OSMax' => $shopItems->getOSMax(),
+                'ProcessorMax' => $shopItems->getProcessorMax(),
+                'MemoryMax' => $shopItems->getMemoryMax(),
+                'GraphicsMax' => $shopItems->getGraphicsMax(),
+                'DirectXMax' => $shopItems->getDirectXMax(),
+                'HardDriveMax' => $shopItems->getHardDriveMax(),
             ]
         );
     }
@@ -144,6 +166,7 @@ class IndexController extends AbstractController
             ]
         );
     }
+
     /**
      * @Route("/search", name="search")
      */
@@ -154,6 +177,7 @@ class IndexController extends AbstractController
         $qb->where('items.title like :search')
             ->setParameters([':search' => '%'.$search.'%']);
         $items = $qb->getQuery()->getResult();
+
         return $this->render(
             'index/shopList.html.twig',
             [
@@ -163,6 +187,19 @@ class IndexController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/shop/cart/{id<\d+>}", name="delete")
+     */
+    public function shopCartDelete(ShopCart $shopCart, EntityManagerInterface $em): Response
+    {
+        $em->remove($shopCart);
+        if (null !== $shopCart->getShopItem()) {
+            $count = $shopCart->getShopItem()->getCount() ?? 0;
+            ++$count;
+            $shopCart->getShopItem()->setCount($count);
+        }
+        $em->flush();
 
-
+        return $this->redirectToRoute('shopCart');
+    }
 }
